@@ -38,5 +38,5 @@ jobs:
   #    run: curl -I localhost:8082
 
     # Cleanup
-    - name: Cleanup
-      run: docker rm -f test-container
+   # - name: Cleanup
+    #  run: docker rm -f test-container
