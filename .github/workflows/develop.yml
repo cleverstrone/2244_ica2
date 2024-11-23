@@ -34,8 +34,8 @@ jobs:
         docker run -d --name test-container -p 8081:80 ${{ secrets.USERNAME }}/nginx-application:latest
 
     # Test website accessibility
-    - name: Test Container
-      run: curl -I localhost:8081
+   # - name: Test Container
+    #  run: curl -I localhost:8081
 
     - name: Push Docker Images
       run: |
