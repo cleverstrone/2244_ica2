@@ -1,0 +1,36 @@
+name: Main Pipeline
+
+on:
+  push:
+    branches:
+      - master
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Log in to Docker Hub
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+
+    # Pull the latest image
+    - name: Pull Docker Image
+      run: docker pull ${{ secrets.USERNAME }}/nginx-application:latest
+
+    # Run container
+    - name: Run Docker Container
+      run: |
+        docker run -d --name test-container -p 8082:80 ${{ secrets.USERNAME }}/nginx-application:latest
+
+    # Test website accessibility
+    - name: Test Container
+      run: curl -I localhost:8082
+
+    # Cleanup
+    - name: Cleanup
+      run: docker rm -f test-container
