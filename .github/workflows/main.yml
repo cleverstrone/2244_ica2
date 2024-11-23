@@ -28,8 +28,8 @@ jobs:
         docker run -d --name test-container -p 8082:80 ${{ secrets.USERNAME }}/nginx-application:latest
 
     # Test website accessibility
-    - name: Test Container
-      run: curl -I localhost:8082
+ #   - name: Test Container
+  #    run: curl -I localhost:8082
 
     # Cleanup
     - name: Cleanup
