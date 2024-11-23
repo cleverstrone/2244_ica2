@@ -8,6 +8,7 @@ on:
 jobs:
   build-deploy:
     runs-on: demo
+
     steps:
     # Checkout code
     - name: Checkout code
@@ -34,7 +35,7 @@ jobs:
 
     # Test website accessibility
    # - name: Test Container
-   #   run: curl -I localhost:8081
+
 
     - name: Push Docker Images
       run: |
