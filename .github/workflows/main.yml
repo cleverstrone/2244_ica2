@@ -21,6 +21,12 @@ jobs:
     # Pull the latest image
     - name: Pull Docker Image
       run: docker pull ${{ secrets.USERNAME }}/nginx-application:latest
+    - name: Stop and Remove Existing Container
+      run: |
+        if [ $(docker ps -q -f name=test-container) ]; then
+            docker stop test-container
+            docker rm test-container
+        fi
 
     # Run container
     - name: Run Docker Container
